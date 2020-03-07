@@ -10,21 +10,21 @@ class WorldController
     [*0..@height].product([*0..@width]).each_slice(@width + 1).to_a
   end
 
-  def show_world(world_array, player_coordinates)
+  def show_world(world_array, robot_coordinates)
     world_array.each do |row|
       # Line break for each 'outer' array
       print "\n"
       row.each do |coordinate|
         sleep(0.02) if @is_first_render
         # Display something for each 'inner' array - where the x y coords sit
-        render_coordinate(coordinate, player_coordinates)
+        render_coordinate(coordinate, robot_coordinates)
       end
     end
 
   end
 
-  def render_coordinate(coordinate, player_coordinates)
-    if coordinate == player_coordinates
+  def render_coordinate(coordinate, robot_coordinates)
+    if coordinate == robot_coordinates
       print "0--0".green
     else
       print "~~~~".yellow
