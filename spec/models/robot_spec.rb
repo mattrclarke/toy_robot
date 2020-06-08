@@ -1,5 +1,5 @@
-require_relative "../../lib/world"
-require_relative "../../lib/robot"
+require_relative "../../models/world"
+require_relative "../../models/robot"
 RSpec.describe Robot do
 
   subject { Robot.new @world }

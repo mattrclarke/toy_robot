@@ -1,4 +1,4 @@
-require_relative "../../lib/world"
+require_relative "../../models/world"
 require 'byebug'
 RSpec.describe World do
 

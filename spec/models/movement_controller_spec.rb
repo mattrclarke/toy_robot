@@ -1,5 +1,7 @@
-require_relative "../../lib/world"
-require_relative "../../lib/movement_controller"
+require_relative "../../models/world"
+require_relative "../../models/movement_controller"
+require_relative "../../models/robot"
+require "byebug"
 RSpec.describe MovementController do
 
   subject { MovementController.new 0, 0, 0, @world }
@@ -13,13 +15,13 @@ RSpec.describe MovementController do
   end
   
   describe "#left" do 
-    context "when the movement controller's direction is at the end of it's compass" do 
+    context "when the movement controller's direction is at the beginning of it's compass" do 
       it "sets it's direction to it's last available direction" do 
         subject.left
         expect(subject.direction).to eq(subject.compass.length - 1)
       end
     end
-    context "when the movement controller's direction is NOT at the end of it's compass" do 
+    context "when the movement controller's direction is NOT at the beginning of it's compass" do 
       it "updates the direction of the movement controller by - 1" do 
         subject.direction = subject.compass.length - 1
         current_direction = subject.direction
@@ -30,8 +32,8 @@ RSpec.describe MovementController do
   end
   
   describe "#right" do 
-    context "when the movement controller's direction is at the beginning of it's compass" do 
-      it "sets it's direction to it's first available direction" do 
+    context "when the movement controller's direction is at the end of it's compass" do 
+      it "sets it's direction to it's first available direction" do
         subject.direction = subject.compass.length - 1
         subject.right
         expect(subject.direction).to eq(0)

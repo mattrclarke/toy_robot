@@ -1,6 +1,6 @@
-require_relative "../../lib/input_controller"
-require_relative "../../lib/robot"
-require_relative "../../lib/world"
+require_relative "../../models/input_controller"
+require_relative "../../models/robot"
+require_relative "../../models/world"
 
 RSpec.describe InputController do
   
