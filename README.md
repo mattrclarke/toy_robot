@@ -19,6 +19,6 @@ a reusable class that could potentially be used for any other agents that requir
 run `ruby toy_robot.rb` from the toy_robot directory
 
 # Testing
-Tests are written using rspec 3.9.0, 
-type rspec to run all tests or rspec <path_to_spec/spec_file.rb> for individual tests
+Tests written in `rspec 3.9.0`
+type `rspec` to run all tests or `rspec /path_to_spec/spec_file.rb` for individual tests
 
