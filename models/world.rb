@@ -3,7 +3,7 @@ class World
   def initialize(width, height)
     @width = width 
     @height = height
-    generate_world(@width, @height)
+    generate_world
   end
   
   def is_valid_position? (y, x)
@@ -11,8 +11,8 @@ class World
   end
   
   private
-  def generate_world(height, width)
-    [*0..height].product([*0..width]).each_slice(@width + 1).to_a
+  def generate_world
+    [*0..@height].product([*0..@width]).each_slice(@width + 1).to_a
   end
   
 end
