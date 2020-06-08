@@ -7,14 +7,6 @@ class InputController
     @robot = robot
   end
 
-  def input_commands
-    ["commands", "quit"]
-  end
-  
-  def robot_commands
-    ["move", "left", "right", "report"]
-  end
-
   def commands
     puts "\n \n#{"-" * 40}
     This program will accept the following input:\n
@@ -25,7 +17,7 @@ class InputController
     'exit' will quit the program \n
     #{"-" * 40}"
   end
-
+  
   def execute_input(command)
     
     if (input_commands + robot_commands).include?(command) == false
@@ -36,4 +28,14 @@ class InputController
     commands if command == "commands"
     exit if command == "quit"
   end
+
+  private
+  def input_commands
+    ["commands", "quit"]
+  end
+  
+  def robot_commands
+    ["move", "left", "right", "report"]
+  end
+  
 end

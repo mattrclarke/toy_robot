@@ -4,7 +4,8 @@ RSpec.describe Robot do
 
   subject { Robot.new @world }
   
-  before do 
+  before do
+    Robot.any_instance.stub(:gets).and_return("5")
     random_size = rand(4..15)
     @world = World.new(random_size, random_size)
   end

@@ -3,7 +3,11 @@ require 'byebug'
 RSpec.describe World do
 
   subject { World.new(3, 5) }
-    
+  
+  before do 
+    Robot.any_instance.stub(:gets).and_return("5")
+  end
+  
   describe "#generate world" do 
     it "generates a world with a height of a given size" do 
       expect(subject.width).to eq(3)

@@ -9,6 +9,7 @@ RSpec.describe MovementController do
     @world = World.new(random_size, random_size)
     subject.coords[:x] = (2..(subject.world.width - 2)).to_a.sample
     subject.coords[:y] = (2..(subject.world.height - 2)).to_a.sample
+    Robot.any_instance.stub(:gets).and_return("5")
   end
   
   describe "#left" do 

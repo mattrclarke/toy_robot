@@ -9,6 +9,10 @@ RSpec.describe InputController do
   let (:world) { World.new(5, 5) }
   let (:robot) { Robot.new(world) }
   
+  before do 
+    Robot.any_instance.stub(:gets).and_return("5")    
+  end
+  
   describe "execute_input" do
     
     context "when given valid input" do 

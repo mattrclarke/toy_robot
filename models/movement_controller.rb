@@ -1,5 +1,5 @@
 class MovementController
-  require "byebug"
+
   class MovementError < StandardError; end
   attr_accessor :direction, :current_position, :world, :coords, :compass
 
@@ -35,7 +35,6 @@ class MovementController
   end
   
   private
-  
   def facing
     @facing = @compass[@direction]
   end

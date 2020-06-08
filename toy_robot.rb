@@ -1,6 +1,6 @@
-require_relative "world"
-require_relative "robot"
-require_relative "input_controller"
+require_relative "models/world"
+require_relative "models/robot"
+require_relative "models/input_controller"
 
 module ToyRobot
   class ProgramController
@@ -25,4 +25,4 @@ module ToyRobot
   end
 end
 
-# ToyRobot::ProgramController.new
+ToyRobot::ProgramController.new
