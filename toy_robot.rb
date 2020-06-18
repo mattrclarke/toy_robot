@@ -6,15 +6,12 @@ module ToyRobot
   class ProgramController
 
     def initialize
-      @world = World.new(5, 5)
-      @robot = Robot.new(@world)
-      @input_controller = InputController.new(@robot)
+      @input_controller = InputController.new
       run
     end
 
     private
-    def run
-      @input_controller.commands
+    def run      
       loop do
         print "\nEnter a command:"
         command = gets.chomp.downcase

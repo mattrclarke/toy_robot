@@ -69,7 +69,6 @@ RSpec.describe Robot do
       Robot.any_instance.stub(:gets).and_return("5")
       subject.movement_controller = nil
       subject.send(:place_robot)
-      expect(subject.movement_controller).to_not eq(nil)
       expect(subject.movement_controller.coords).to eq({y: 5, x: 5})
     end
     
