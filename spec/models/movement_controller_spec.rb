@@ -9,8 +9,6 @@ RSpec.describe MovementController do
   before do 
     random_size = rand(4..15)
     @world = World.new(random_size, random_size)
-    subject.coords[:x] = (2..(subject.world.width - 2)).to_a.sample
-    subject.coords[:y] = (2..(subject.world.height - 2)).to_a.sample
   end
   
   describe "#left" do 
@@ -78,47 +76,50 @@ RSpec.describe MovementController do
   
   describe "#new_position" do
     context "when the resulting movement is valid" do
-      context "when facing north" do 
+      subject { MovementController.new y_coords, x_coords, direction, world }
+      let(:world) { World.new(5, 5) }
+      let(:y_coords) { 0 }
+      let(:x_coords) { 0 }
+      
+      context "when facing north" do
+        let(:direction) { 0 }  
         it "updates the y axis by + 1" do
-          subject.direction = 0
-          y_axis = subject.coords[:y]
-          subject.send(:new_position, subject.coords)
-          expect(subject.coords[:y]).to eq(y_axis + 1)
+          expect{ subject.attempt_move }.to change{ subject.coords[:y] }.from(0).to(1)
         end
       end
       
       context "when facing east" do 
+        let(:direction) { 1 }
         it "updates the x axis by + 1" do
-          subject.direction = 1
-          x_axis = subject.coords[:x]
-          subject.send(:new_position, subject.coords)
-          expect(subject.coords[:x]).to eq(x_axis + 1)
+          expect{ subject.attempt_move }.to change{ subject.coords[:x]}.from(0).to(1)
         end
       end
       
       context "when facing south" do 
+        let(:direction) { 2 }
+        let(:y_coords) { 1 }
         it "updates the y axis by - 1" do
-          subject.direction = 2
-          y_axis = subject.coords[:y]
-          subject.send(:new_position, subject.coords)
-          expect(subject.coords[:y]).to eq(y_axis - 1)
+          expect{ subject.attempt_move }.to change{ subject.coords[:y] }.from(1).to(0)
         end
       end
       
-      context "when facing west" do 
+      context "when facing west" do
+        let(:direction) { 3 }
+        let(:x_coords) { 1 }
         it "updates the x axis by - 1" do
-          subject.direction = 3
-          x_axis = subject.coords[:x]
-          subject.send(:new_position, subject.coords)
-          expect(subject.coords[:x]).to eq(x_axis - 1)
+          expect{ subject.attempt_move }.to change{ subject.coords[:x] }.from(1).to(0)
         end
       end
       
     end
     context "when the new position is NOT valid" do
-      it "raises an error" do 
-        subject.coords[:y] = subject.world.height
-        expect { subject.attempt_move }.to raise_error(MovementController::MovementError)
+      subject { MovementController.new y_coords, x_coords, direction, world }
+      let(:direction) { 1 }
+      let(:y_coords) { 0 }
+      let(:x_coords) { 4 }
+      
+      it "raises an error" do
+        expect { subject.attempt_move }.to raise_error(StandardError)
       end
     end
   end

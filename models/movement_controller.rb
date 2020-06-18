@@ -32,7 +32,7 @@ class MovementController
   
   def coordinates_exist?(y, x)
     if @world.is_valid_position?(y, x) == false
-      raise ArgumentError.new "Position is not on table"
+      raise StandardError.new "Position is not on table"
     end
   end
   
