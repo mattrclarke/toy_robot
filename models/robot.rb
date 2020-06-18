@@ -2,6 +2,8 @@ require 'byebug'
 require_relative "movement_controller"
 class Robot  
   
+  attr_accessor :movement_controller, :world
+  
   def initialize(world, y_coords, x_coords)
     @movement_controller = nil
     @world = world
@@ -16,10 +18,6 @@ class Robot
   end
 
   def place_robot(y_coords, x_coords)
-    if @world.is_valid_position?(y_coords, x_coords) == false
-      raise ArgumentError.new("Position is not on the table")
-    end
-    
     @movement_controller = MovementController.new(y_coords, x_coords, 0, @world)
   end
     

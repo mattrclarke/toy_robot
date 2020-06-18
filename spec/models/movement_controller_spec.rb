@@ -11,19 +11,18 @@ RSpec.describe MovementController do
     @world = World.new(random_size, random_size)
     subject.coords[:x] = (2..(subject.world.width - 2)).to_a.sample
     subject.coords[:y] = (2..(subject.world.height - 2)).to_a.sample
-    Robot.any_instance.stub(:gets).and_return("5")
   end
   
   describe "#left" do 
     context "when the movement controller's direction is at the beginning of it's compass" do 
       it "sets it's direction to it's last available direction" do 
         subject.left
-        expect(subject.direction).to eq(subject.compass.length - 1)
+        expect(subject.direction).to eq(MovementController::COMPASS.length - 1)
       end
     end
     context "when the movement controller's direction is NOT at the beginning of it's compass" do 
       it "updates the direction of the movement controller by - 1" do 
-        subject.direction = subject.compass.length - 1
+        subject.direction = MovementController::COMPASS.length - 1
         current_direction = subject.direction
         subject.left
         expect(subject.direction).to eq(current_direction - 1)
@@ -34,7 +33,7 @@ RSpec.describe MovementController do
   describe "#right" do 
     context "when the movement controller's direction is at the end of it's compass" do 
       it "sets it's direction to it's first available direction" do
-        subject.direction = subject.compass.length - 1
+        subject.direction = MovementController::COMPASS.length - 1
         subject.right
         expect(subject.direction).to eq(0)
       end

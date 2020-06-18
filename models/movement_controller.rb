@@ -11,6 +11,7 @@ class MovementController
     @x_coords = x_coords
     @coords = { y: @y_coords, x: @x_coords }
     @world = world
+    coordinates_exist?(y_coords, x_coords)
   end
       
   def left
@@ -31,7 +32,7 @@ class MovementController
   
   def coordinates_exist?(y, x)
     if @world.is_valid_position?(y, x) == false
-      raise MovementError.new "Position is not on table"
+      raise ArgumentError.new "Position is not on table"
     end
   end
   
